@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import pl.umk.workshop.springintroduction.domain.numbermanager.DepositNumberManager;
 import pl.umk.workshop.springintroduction.domain.UmkCloakroomFacade;
 import pl.umk.workshop.springintroduction.domain.numbermanager.EvenDepositNumberManager;
-import pl.umk.workshop.springintroduction.infrastructure.UmkCloakroomRepository;
+import pl.umk.workshop.springintroduction.domain.UmkCloakroomRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
