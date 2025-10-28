@@ -32,8 +32,8 @@ public class UmkCloakroomEndpoint {
         --header 'Content-Type: application/json' \
         --data-raw '{
             "student": {
-                "name": "Amadeusz",
-                "surname": "Zaradny"
+                "name": "Jan",
+                "surname": "Kowalski"
             },
             "items": [
                 "JACKET"

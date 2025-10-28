@@ -9,7 +9,7 @@ import pl.umk.workshop.springintroduction.domain.models.Deposit;
 import pl.umk.workshop.springintroduction.domain.models.ExceededMaxNumberException;
 import pl.umk.workshop.springintroduction.domain.models.Item;
 import pl.umk.workshop.springintroduction.domain.models.Student;
-import pl.umk.workshop.springintroduction.infrastructure.UmkCloakroomRepository;
+import pl.umk.workshop.springintroduction.domain.UmkCloakroomRepository;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ class SpringIntroductionApplicationTests extends TestsBase {
     @Test
     void primaryBeans() {
         // given
-        var student = new Student("Amadeusz", "Zaradny");
+        var student = new Student("Jan", "Kowalski");
         var items = List.of(JACKET);
 
         // when
