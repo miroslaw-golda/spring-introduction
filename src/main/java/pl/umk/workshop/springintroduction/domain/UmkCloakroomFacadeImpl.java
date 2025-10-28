@@ -6,7 +6,6 @@ import pl.umk.workshop.springintroduction.domain.models.Deposit;
 import pl.umk.workshop.springintroduction.domain.models.Item;
 import pl.umk.workshop.springintroduction.domain.models.Student;
 import pl.umk.workshop.springintroduction.domain.numbermanager.DepositNumberManager;
-import pl.umk.workshop.springintroduction.infrastructure.UmkCloakroomRepository;
 
 import java.util.List;
 
