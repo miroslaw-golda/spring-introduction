@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import pl.umk.workshop.springintroduction.domain.numbermanager.DepositNumberManager;
 import pl.umk.workshop.springintroduction.domain.UmkCloakroomFacade;
 import pl.umk.workshop.springintroduction.domain.models.Student;
-import pl.umk.workshop.springintroduction.infrastructure.UmkCloakroomRepository;
+import pl.umk.workshop.springintroduction.domain.UmkCloakroomRepository;
 
 import java.util.List;
 
@@ -48,6 +48,6 @@ class SpringIntroductionApplicationTests extends TestsBase {
 
         // then
         UmkCloakroomFacade facadeFromContext = (UmkCloakroomFacade) result;
-        facadeFromContext.depositItems(new Student("Amadeusz", "Zaradny"), List.of(JACKET));
+        facadeFromContext.depositItems(new Student("Jan", "Kowalski"), List.of(JACKET));
     }
 }
