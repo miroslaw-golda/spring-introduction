@@ -1,6 +1,7 @@
 package pl.umk.workshop.springintroduction.domain;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -22,8 +23,10 @@ public class UmkCloakroomFacadeConfiguration {
 
     @Bean
     @Scope("singleton")
-    DepositNumberManager incrementalDepositNumberManager() {
-        return new IncrementalDepositNumberManager();
+    DepositNumberManager incrementalDepositNumberManager(
+            @Value("${depositManager.maxNumber}") Integer maxNumber
+    ) {
+        return new IncrementalDepositNumberManager(maxNumber);
     }
 
     @Bean

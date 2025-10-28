@@ -12,9 +12,19 @@ public class IncrementalDepositNumberManager implements DepositNumberManager {
 
     private final static Integer MAX_NUMBER = 100;
 
+    private final Integer maxNumber;
+
+    public IncrementalDepositNumberManager(Integer maxNumber) {
+        this.maxNumber = maxNumber;
+    }
+
+    public IncrementalDepositNumberManager() {
+        this(MAX_NUMBER);
+    }
+
     @Override
     public Integer getNextFreeNumber() {
-        var freeNumber = IntStream.rangeClosed(1, MAX_NUMBER)
+        var freeNumber = IntStream.rangeClosed(1, maxNumber)
                 .filter(number -> !reservedNumbers.contains(number))
                 .findFirst()
                 .orElseThrow(() -> new ExceededMaxNumberException(MAX_NUMBER));

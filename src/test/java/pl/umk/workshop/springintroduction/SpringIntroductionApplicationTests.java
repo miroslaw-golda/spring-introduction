@@ -3,17 +3,18 @@ package pl.umk.workshop.springintroduction;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import pl.umk.workshop.springintroduction.domain.numbermanager.DepositNumberManager;
 import pl.umk.workshop.springintroduction.domain.UmkCloakroomFacade;
+import pl.umk.workshop.springintroduction.domain.UmkCloakroomRepository;
+import pl.umk.workshop.springintroduction.domain.models.Deposit;
 import pl.umk.workshop.springintroduction.domain.models.ExceededMaxNumberException;
 import pl.umk.workshop.springintroduction.domain.models.Item;
 import pl.umk.workshop.springintroduction.domain.models.Student;
-import pl.umk.workshop.springintroduction.domain.UmkCloakroomRepository;
+import pl.umk.workshop.springintroduction.domain.numbermanager.DepositNumberManager;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static pl.umk.workshop.springintroduction.domain.models.Item.JACKET;
 
 class SpringIntroductionApplicationTests extends TestsBase {
 
@@ -39,33 +40,21 @@ class SpringIntroductionApplicationTests extends TestsBase {
     }
 
 
-    // By default beans are singletons.
-    // Every time we request it from the context, we get the same instance.
+    // Extract max number to application configuration
+    // ATTENTION: You should remove constant value MAX_NUMBER
+    // TIP: @ConfigurationProperties or @Value
     @Test
-    void singletonScope() {
+    void readingProperties() {
+        // given
+        var student = new Student("Jan", "Kowalski");
+        var items = List.of(JACKET);
+
         // when
-        var incrementalNumberManager1 = (DepositNumberManager) context.getBean("incrementalDepositNumberManager");
-        var incrementalNumberManager2 = (DepositNumberManager) context.getBean("incrementalDepositNumberManager");
+        fillCloakroom(student, items);
 
         // then
-        assertEquals(incrementalNumberManager1, incrementalNumberManager2);
-        assertEquals(1, incrementalNumberManager1.getNextFreeNumber());
-        assertEquals(2, incrementalNumberManager2.getNextFreeNumber());
-    }
-
-    // Let's see how we can create prototype scoped beans.
-    // So that every time we request it from the context, we get a new instance.
-    // TIP: @Scope
-    @Test
-    void prototypeScope() {
-        // when
-        var incrementalNumberManager1 = (DepositNumberManager) context.getBean("prototypeDepositNumberManager");
-        var incrementalNumberManager2 = (DepositNumberManager) context.getBean("prototypeDepositNumberManager");
-
-        // then
-        assertNotEquals(incrementalNumberManager1, incrementalNumberManager2);
-        assertEquals(1, incrementalNumberManager1.getNextFreeNumber());
-        assertEquals(1, incrementalNumberManager2.getNextFreeNumber());
+        var deposits = umkCloakroomRepository.findAll();
+        assertEquals(200, deposits.stream().map(Deposit::depositId).reduce(Integer::max).get());
     }
 
     private void fillCloakroom(Student student, List<Item> items) {
