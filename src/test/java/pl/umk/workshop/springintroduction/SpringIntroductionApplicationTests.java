@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import pl.umk.workshop.springintroduction.domain.numbermanager.DepositNumberManager;
 import pl.umk.workshop.springintroduction.domain.UmkCloakroomFacade;
 import pl.umk.workshop.springintroduction.domain.models.Student;
-import pl.umk.workshop.springintroduction.infrastructure.UmkCloakroomRepository;
+import pl.umk.workshop.springintroduction.domain.UmkCloakroomRepository;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ class SpringIntroductionApplicationTests extends TestsBase {
     @Test
     void dependencyInjectionWithAnnotations() {
         // given
-        var student = new Student("Amadeusz", "Zaradny");
+        var student = new Student("Jan", "Kowalski");
         var items = List.of(JACKET);
 
         // when
@@ -50,7 +50,7 @@ class SpringIntroductionApplicationTests extends TestsBase {
         // then
         var deposit = umkCloakroomRepository.findById(result.depositId());
         assertEquals(List.of(JACKET), deposit.items());
-        assertEquals("Amadeusz", deposit.student().name());
-        assertEquals("Zaradny", deposit.student().surname());
+        assertEquals("Jan", deposit.student().name());
+        assertEquals("Kowalski", deposit.student().surname());
     }
 }
