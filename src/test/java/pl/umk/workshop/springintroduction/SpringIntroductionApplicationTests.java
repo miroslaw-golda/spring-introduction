@@ -12,7 +12,7 @@ import pl.umk.workshop.springintroduction.domain.models.ExceededMaxNumberExcepti
 import pl.umk.workshop.springintroduction.domain.models.Item;
 import pl.umk.workshop.springintroduction.domain.models.Student;
 import pl.umk.workshop.springintroduction.domain.numbermanager.EvenDepositNumberManager;
-import pl.umk.workshop.springintroduction.infrastructure.UmkCloakroomRepository;
+import pl.umk.workshop.springintroduction.domain.UmkCloakroomRepository;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ class SpringIntroductionApplicationTests extends TestsBase {
     @Test
     void dependencyInjectionWithAnnotations() {
         // given
-        var student = new Student("Amadeusz", "Zaradny");
+        var student = new Student("Jan", "Kowalski");
         var items = List.of(JACKET);
 
         // when
@@ -58,8 +58,8 @@ class SpringIntroductionApplicationTests extends TestsBase {
         // then
         var deposit = umkCloakroomRepository.findById(result.depositId());
         assertEquals(List.of(JACKET), deposit.items());
-        assertEquals("Amadeusz", deposit.student().name());
-        assertEquals("Zaradny", deposit.student().surname());
+        assertEquals("Jan", deposit.student().name());
+        assertEquals("Kowalski", deposit.student().surname());
     }
 
     // Create beans in the spring context and inject them to UmkCloakroomFacadeImpl using configuration class
@@ -67,7 +67,7 @@ class SpringIntroductionApplicationTests extends TestsBase {
     @Test
     void dependencyInjectionWithConfigurationClass() {
         // given
-        var student = new Student("Amadeusz", "Zaradny");
+        var student = new Student("Jan", "Kowalski");
         var items = List.of(JACKET);
 
         // when
@@ -76,8 +76,8 @@ class SpringIntroductionApplicationTests extends TestsBase {
         // then
         var deposit = umkCloakroomRepository.findById(result.depositId());
         assertEquals(List.of(JACKET), deposit.items());
-        assertEquals("Amadeusz", deposit.student().name());
-        assertEquals("Zaradny", deposit.student().surname());
+        assertEquals("Jan", deposit.student().name());
+        assertEquals("Kowalski", deposit.student().surname());
 
         // and
         assertNotConfiguredWithAnnotations(UmkCloakroomFacadeImpl.class);
@@ -93,7 +93,7 @@ class SpringIntroductionApplicationTests extends TestsBase {
 
         // then
         UmkCloakroomFacade facadeFromContext = (UmkCloakroomFacade) result;
-        facadeFromContext.depositItems(new Student("Amadeusz", "Zaradny"), List.of(JACKET));
+        facadeFromContext.depositItems(new Student("Jan", "Kowalski"), List.of(JACKET));
     }
 
     // 1. Create second version of DepositNumberManager which generates only even numbers (extend class EvenDepositNumberManager)
@@ -103,7 +103,7 @@ class SpringIntroductionApplicationTests extends TestsBase {
     @Test
     void primaryBeans() {
         // given
-        var student = new Student("Amadeusz", "Zaradny");
+        var student = new Student("Jan", "Kowalski");
         var items = List.of(JACKET);
 
         // when
@@ -121,7 +121,7 @@ class SpringIntroductionApplicationTests extends TestsBase {
     @Test
     void qualifyingBeans() {
         // given
-        var student = new Student("Amadeusz", "Zaradny");
+        var student = new Student("Jan", "Kowalski");
         var items = List.of(JACKET);
 
         // when
@@ -139,7 +139,7 @@ class SpringIntroductionApplicationTests extends TestsBase {
     @Test
     void readingProperties() {
         // given
-        var student = new Student("Amadeusz", "Zaradny");
+        var student = new Student("Jan", "Kowalski");
         var items = List.of(JACKET);
 
         // when

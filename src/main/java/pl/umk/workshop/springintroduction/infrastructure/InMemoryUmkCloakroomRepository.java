@@ -1,6 +1,7 @@
 package pl.umk.workshop.springintroduction.infrastructure;
 
 import org.springframework.stereotype.Repository;
+import pl.umk.workshop.springintroduction.domain.UmkCloakroomRepository;
 import pl.umk.workshop.springintroduction.domain.models.Deposit;
 
 import java.util.HashMap;
