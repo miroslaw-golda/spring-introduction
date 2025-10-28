@@ -20,10 +20,10 @@ public class CloakroomFeeder {
 
     @PostConstruct
     void feed() {
-        var me = new Student("Amadeusz", "Zaradny");
+        var student = new Student("Jan", "Kowalski");
         var items = List.of(JACKET, SCARF);
         for (int i = 0; i < 10; i++) {
-            umkCloakroomFacade.depositItems(me, items);
+            umkCloakroomFacade.depositItems(student, items);
         }
     }
 }
