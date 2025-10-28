@@ -1,4 +1,4 @@
-package pl.umk.workshop.springintroduction.infrastructure;
+package pl.umk.workshop.springintroduction.domain;
 
 import pl.umk.workshop.springintroduction.domain.models.Deposit;
 
