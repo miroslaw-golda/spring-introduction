@@ -1,7 +1,7 @@
 package pl.umk.workshop.springintroduction.domain;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -11,6 +11,7 @@ import pl.umk.workshop.springintroduction.domain.numbermanager.EvenDepositNumber
 import pl.umk.workshop.springintroduction.domain.numbermanager.IncrementalDepositNumberManager;
 
 @Configuration
+@EnableConfigurationProperties(DepositManagerProperties.class)
 public class UmkCloakroomFacadeConfiguration {
 
     @Bean
@@ -24,9 +25,10 @@ public class UmkCloakroomFacadeConfiguration {
     @Bean
     @Scope("singleton")
     DepositNumberManager incrementalDepositNumberManager(
-            @Value("${depositManager.maxNumber}") Integer maxNumber
+            DepositManagerProperties depositManagerProperties
     ) {
-        return new IncrementalDepositNumberManager(maxNumber);
+//        return new IncrementalDepositNumberManager(depositManagerProperties.getMaxNumber()); // for class-based properties version
+        return new IncrementalDepositNumberManager(depositManagerProperties.maxNumber());
     }
 
     @Bean
